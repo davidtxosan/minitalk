@@ -3,11 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
+/*   By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:20:20 by usuario           #+#    #+#             */
-/*   Updated: 2022/06/08 13:41:24 by usuario          ###   ########.fr       */
+/*   Updated: 2022/06/08 18:09:07 by davidsan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_utils.h"
+
+int main (void)
+{
+	ft_putstr("Server PID: ");
+	
+}

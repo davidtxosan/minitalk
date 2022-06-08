@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_utils.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
+/*   By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:21:19 by usuario           #+#    #+#             */
-/*   Updated: 2022/06/08 14:26:10 by usuario          ###   ########.fr       */
+/*   Updated: 2022/06/08 17:51:50 by davidsan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,13 @@
 # define MINITALK_H
 
 # include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+
+int		ft_symbols(const char *str);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+void	ft_putnbr(int n);
+void	ft_putstr(char *str);
+
 #endif
