@@ -6,50 +6,38 @@
 /*   By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:41:17 by davidsan          #+#    #+#             */
-/*   Updated: 2022/06/08 17:41:44 by davidsan         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:16:04 by davidsan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minitalk_utils.h"
 
-int		ft_symbols(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	s;
+	int	r;
 
 	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+	s = 1;
+	r = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	return (i);
-}
-int		ft_atoi(const char *str)
-{
-	int	c;
-	int	neg;
-	int	num;
-
-	c = ft_symbols(str);
-	neg = 1;
-	num = 0;
-	if (str[c] == '-')
-		neg = -1;
-	if (str[c] == '+' || str[c] == '-')
-		c++;
-	while (ft_isdigit(str[c]))
+	if (str[i] == '-' || str[i] == '+')
 	{
-		num *= 10;
-		num += str[c] - 48;
-		c++;
+		if (str[i] == '-')
+			s *= -1;
+		i++;
 	}
-	num *= neg;
-	return (num);
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		r *= 10;
+		r += str[i] - 48;
+		i++;
+	}
+	return (r * s);
 }
-int		ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
+
 void	ft_putnbr(int n)
 {
 	long	nbr;
@@ -72,8 +60,24 @@ void	ft_putnbr(int n)
 		write(1, &c, 1);
 	}
 }
+
 void	ft_putstr(char *str)
 {
 	while (*str)
 		write(1, str++, 1);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	c;
+
+	c = 0;
+	while (str [c])
+	c++;
+	return (c);
+}
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }
