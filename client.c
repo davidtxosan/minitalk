@@ -6,30 +6,32 @@
 /*   By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:31:14 by davidsan          #+#    #+#             */
-/*   Updated: 2022/06/09 16:32:49 by davidsan         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:15:12 by davidsan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_utils.h"
 
-void	send_bits(char *argv, int pid)
-{
-	size_t	len;
-	size_t	i;
-	int		pos;
+#define DELAY 5000
 
-	len = ft_strlen(argv);
-	i = 0;
-	while (++i < len)
+void	send_bits(char *str, int pid)
+{
+	int	pos;
+	int	len;
+	int	i;
+
+	len = ft_strlen(str);
+	i = -1;
+	while (++i <= len)
 	{
-		pos = 0;
-		while (++pos < 8)
+		pos = -1;
+		while (++pos < 7)
 		{
-			if ((argv[i] >> pos) & 1)
+			if ((str[i] >> pos) & 1)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
-			usleep(100);
+			usleep(DELAY);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 #    By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/08 14:03:42 by usuario           #+#    #+#              #
-#    Updated: 2022/06/08 17:36:19 by davidsan         ###   ########.fr        #
+#    Updated: 2022/06/23 12:22:21 by davidsan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJECT_SERVER 	= $(SOURCES_SERVER:.c=.o)
 
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror 
 RM			= rm -f
 ARFLAGS		= ar rcs
 
