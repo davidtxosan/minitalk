@@ -6,13 +6,13 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:31:14 by davidsan          #+#    #+#             */
-/*   Updated: 2022/07/20 19:30:35 by usuario          ###   ########.fr       */
+/*   Updated: 2022/07/20 19:56:39 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_utils.h"
 
-#define DELAY 5000
+#define DELAY 500
 
 void	send_bits(char *str, int pid)
 {
