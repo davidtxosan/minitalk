@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:20:20 by usuario           #+#    #+#             */
-/*   Updated: 2022/06/23 13:29:45 by davidsan         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:53:20 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_utils.h"
 
-void	send(int sig)
+ void	send(int signal)
 {
-	int			bit;
-	static int	position = 0;
 	static char	c = 0;
+	static int	position = 0;
+	int			bit;
 
-	if (sig == SIGUSR1)
+	if (signal == SIGUSR1)
 		bit = 0;
-	else if (sig == SIGUSR2)
+	else if (signal == SIGUSR2)
 		bit = 1;
 	else
 		exit(EXIT_FAILURE);
@@ -33,20 +33,18 @@ void	send(int sig)
 		c = 0;
 		position = 0;
 	}
+
 }
 
 int	main(void)
 {
-	struct sigaction	sa;
-
-	sa.sa_handler = send;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	
+	signal(SIGUSR1, send);
+	signal(SIGUSR2, send);
 	ft_putstr("Server PID: ");
 	ft_putnbr(getpid());
 	ft_putstr("\n");
 	while (1)
 		pause();
+	return (0);
 }

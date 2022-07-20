@@ -6,13 +6,26 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:57:02 by usuario           #+#    #+#             */
-/*   Updated: 2022/07/12 15:00:12 by usuario          ###   ########.fr       */
+/*   Updated: 2022/07/20 19:00:45 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_utils.h"
 
 #define DELAY 5000
+
+int	g_len;
+
+void	ft_received(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		ft_putstr("SERVER : Received ");
+		ft_putnbr(g_len);
+		write(1, " character. \n", 14);
+	}
+	exit (1);
+}
 
 void	send_bits(char *str, int pid)
 {
@@ -41,17 +54,13 @@ void	error(void)
 	ft_putstr("Usage :<PID SERVER> <STRING>");
 	exit(0);
 }
-void confirm(int sig)
-{
-	ft_putstr("message send");
-}
 
 int	main(int argc, char **argv)
 {
 	int		pid;
 	char	*msg;
 
-	signal(SIGUSR2, confirm);
+	signal(SIGUSR2, ft_received);
 	if (argc != 3)
 	{
 		error();

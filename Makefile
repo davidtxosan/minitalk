@@ -70,7 +70,7 @@ fclean:	clean
 		
 re:		fclean all
 
-bonus:	$(server_bonus) $(client_bonus)
+bonus:	$(SERVER_BONUS) $(CLIENT_BONUS)
 
 
 .PHONY:	all clean fclean re
