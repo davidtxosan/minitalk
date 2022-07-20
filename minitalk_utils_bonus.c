@@ -6,11 +6,29 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:01:41 by usuario           #+#    #+#             */
-/*   Updated: 2022/07/12 15:02:04 by usuario          ###   ########.fr       */
+/*   Updated: 2022/07/20 19:35:04 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_utils_bonus.h"
+
+void	ft_error(const char *str, int flag)
+{
+	while (*str)
+	{
+		if (*str != 32)
+		{
+			ft_putstr("Error : Enter correct pid \n");
+			exit (1);
+		}
+		str++;
+	}
+	if (flag == -1)
+	{
+		ft_putstr("Error : Enter correct pid \n");
+		exit (1);
+	}
+}
 
 int	ft_atoi(const char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:57:02 by usuario           #+#    #+#             */
-/*   Updated: 2022/07/20 19:00:45 by usuario          ###   ########.fr       */
+/*   Updated: 2022/07/20 19:39:55 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_utils.h"
+#include "minitalk_utils_bonus.h"
 
 #define DELAY 5000
 
@@ -27,26 +27,24 @@ void	ft_received(int sig)
 	exit (1);
 }
 
-void	send_bits(char *str, int pid)
+void	send_bits(char str, int pid)
 {
-	int	pos;
-	int	len;
 	int	i;
+	int	j;
 
-	len = ft_strlen(str);
-	i = -1;
-	while (++i <= len)
+	i = 128;
+	j = 0;
+	(void)pid;
+	while (i > 0)
 	{
-		pos = -1;
-		while (++pos < 7)
-		{
-			if ((str[i] >> pos) & 1)
-				kill(pid, SIGUSR2);
-			else
-				kill(pid, SIGUSR1);
-			usleep(DELAY);
-		}
+		if ((str & i) == i)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		i = i / 2;
+		usleep(150);
 	}
+	ft_error("", j);
 }
 
 void	error(void)
@@ -57,16 +55,24 @@ void	error(void)
 
 int	main(int argc, char **argv)
 {
-	int		pid;
-	char	*msg;
 
-	signal(SIGUSR2, ft_received);
 	if (argc != 3)
 	{
 		error();
 	}
-	pid = ft_atoi(argv[1]);
-	msg = argv[2];
-	send_bits(msg, pid);
-	return (0);
+	int	a;
+	int	i;
+
+	i = 0;
+	if (argc == 3)
+	{
+		a = ft_atoi(argv[1]);
+		while (argv[2][i])
+			send_bits(argv[2][i++], a);
+		send_bits('\0', a);
+		g_len = i;
+		signal(SIGUSR1, ft_received);
+		while (1)
+			pause();
+	}
 }

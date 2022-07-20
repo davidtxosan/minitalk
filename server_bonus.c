@@ -6,47 +6,48 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:57:19 by usuario           #+#    #+#             */
-/*   Updated: 2022/07/12 15:00:58 by usuario          ###   ########.fr       */
+/*   Updated: 2022/07/20 19:40:05 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_utils.h"
+#include "minitalk_utils_bonus.h"
 
-void	send(int sig)
+void	handler(int sig, siginfo_t *info, void *ptr)
 {
-	int			bit;
-	static int	position = 0;
-	static char	c = 0;
+	static int	i;
+	static char	c;
 
+	(void)ptr;
 	if (sig == SIGUSR1)
-		bit = 0;
+		c = (c << 1) | 1;
 	else if (sig == SIGUSR2)
-		bit = 1;
-	else
-		exit(EXIT_FAILURE);
-	c += bit << position++;
-	if (position == 7)
+		c = (c << 1) | 0;
+	i++;
+	if (i == 8)
 	{
-		if (!c)
-			c = '\n';
 		ft_putchar(c);
+		if (!c)
+		{
+			usleep(300);
+			kill(info->si_pid, SIGUSR1);
+		}
+		i = 0;
 		c = 0;
-		position = 0;
 	}
 }
 
 int	main(void)
 {
+
 	struct sigaction	sa;
 
-	sa.sa_handler = send;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
+	ft_putstr("Server PID: \n");
+	ft_putnbr(getpid());
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = handler;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	ft_putstr("Server PID: ");
-	ft_putnbr(getpid());
-	ft_putstr("\n");
 	while (1)
 		pause();
+	return (0);
 }
