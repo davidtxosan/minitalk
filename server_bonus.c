@@ -38,7 +38,6 @@ void	handler(int sig, siginfo_t *info, void *ptr)
 
 int	main(void)
 {
-
 	struct sigaction	sa;
 
 	ft_putstr("Server PID: \n");

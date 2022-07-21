@@ -12,7 +12,7 @@
 
 #include "minitalk_utils.h"
 
- void	send(int signal)
+void	send(int signal)
 {
 	static char	c = 0;
 	static int	position = 0;
@@ -33,12 +33,10 @@
 		c = 0;
 		position = 0;
 	}
-
 }
 
 int	main(void)
 {
-	
 	signal(SIGUSR1, send);
 	signal(SIGUSR2, send);
 	ft_putstr("Server PID: ");

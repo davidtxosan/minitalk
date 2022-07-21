@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidsan <davidsan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: davidsan <davidsan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:01:41 by davidsan           #+#    #+#             */
-/*   Updated: 2022/07/20 19:35:04 by davidsan          ###   ########.fr       */
+/*   Created: 2022/07/12 15:01:41 by davidsan          #+#    #+#             */
+/*   Updated: 2022/07/20 19:35:04 by davidsan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

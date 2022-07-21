@@ -55,14 +55,13 @@ void	error(void)
 
 int	main(int argc, char **argv)
 {
+	int	a;
+	int	i;
 
 	if (argc != 3)
 	{
 		error();
 	}
-	int	a;
-	int	i;
-
 	i = 0;
 	if (argc == 3)
 	{
