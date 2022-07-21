@@ -12,7 +12,7 @@
 
 #include "minitalk_utils_bonus.h"
 
-#define DELAY 5000
+#define DELAY 100
 
 int	g_len;
 
@@ -38,11 +38,11 @@ void	send_bits(char str, int pid)
 	while (i > 0)
 	{
 		if ((str & i) == i)
-			kill(pid, SIGUSR1);
+			j = kill(pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
+			j = kill(pid, SIGUSR2);
 		i = i / 2;
-		usleep(150);
+		usleep(DELAY);
 	}
 	ft_error("", j);
 }
